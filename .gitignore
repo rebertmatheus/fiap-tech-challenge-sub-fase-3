@@ -122,3 +122,17 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.DS_Store
+.joblib
+~$*
+
+# Claude Code
+/docs/claude
+uv.lock
+
+CLAUDE.md
+
+.agents/skills/developing-with-streamlit
+
+.claude/skills/developing-with-streamlit
