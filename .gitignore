@@ -127,6 +127,11 @@ dmypy.json
 .joblib
 ~$*
 
+# MLflow local tracking (SQLite backend store + file-based artifact store)
+mlruns/
+mlflow.db
+mlflow.db-journal
+
 # Claude Code
 /docs/claude
 uv.lock

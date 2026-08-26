@@ -1,0 +1,21 @@
+EstadoCivil,Curso,QualificacaoAnterior,QualificacaoAnteriorGrau,Nacionalidade,NotaAdmissao,NecessidadesEspeciais,Devedor,MensalidadesEmDia,Genero,Bolsista,International,UnidadesCurriculares1SemestreCreditado,UnidadesCurriculares1SemestreInscrito,UnidadesCurriculares1SemestreAvaliacoes,UnidadesCurriculares1SemestreAprovado,UnidadesCurriculares1SemestreGrau,UnidadesCurriculares1SemestreSemAvaliacoes,UnidadesCurriculares2SemestreCreditado,UnidadesCurriculares2SemestreInscrito,UnidadesCurriculares2SemestreAvaliacoes,UnidadesCurriculares2SemestreAprovado,UnidadesCurriculares2SemestreGrau,UnidadesCurriculares2SemestreSemAvaliacoes,TaxaDesemprego,TaxaInflacao,PIB,no_courses_full_year,approval_rate_sem1,approval_rate_sem2,grade_delta,approval_rate_delta,risk_score
+Solteiro,Engenharia Informática,Ensino Secundário,130.0,Português,128.0,0,1,0,Masculino,0,0,0,5,5,0,0.0,0,0,5,7,0,0.0,0,13.9,-0.3,0.79,0,0.0,0.0,0.0,0.0,0.9999978127569572
+Solteiro,Engenharia Informática,Ensino Secundário,127.0,Português,120.4,0,1,0,Masculino,0,0,0,5,12,0,0.0,0,0,5,8,0,0.0,0,9.4,-0.8,-3.12,0,0.0,0.0,0.0,0.0,0.999996987927693
+Solteiro,Enfermagem Veterinária,Outro - 11º Ano de Escolaridade,133.1,Português,138.3,0,1,0,Masculino,0,0,0,6,6,0,0.0,0,0,6,6,0,0.0,0,8.9,1.4,3.51,0,0.0,0.0,0.0,0.0,0.9999815217763599
+Solteiro,Gestão,Ensino Secundário,99.0,Português,99.7,0,1,0,Feminino,0,0,0,5,8,0,0.0,0,0,5,7,0,0.0,0,8.9,1.4,3.51,0,0.0,0.0,0.0,0.0,0.9999718054678497
+Solteiro,Engenharia Informática,Ensino Secundário,115.0,Português,112.2,0,1,1,Masculino,0,0,0,5,9,2,10.0,0,0,5,9,0,0.0,0,15.5,2.8,-4.06,0,0.4,0.0,-10.0,-0.4,0.9999703414581331
+Solteiro,Engenharia Informática,Ensino Secundário,140.0,Português,166.0,0,1,1,Masculino,0,0,0,5,7,0,0.0,0,0,5,5,0,0.0,0,9.4,-0.8,-3.12,0,0.0,0.0,0.0,0.0,0.9999600948924617
+Solteiro,Agronomia,Ensino Secundário,120.0,Português,120.0,0,0,1,Masculino,0,0,0,6,17,1,11.0,0,0,6,19,0,0.0,0,16.2,0.3,-0.92,0,0.16666666666666666,0.0,-11.0,-0.16666666666666666,0.9998878412582944
+Solteiro,Engenharia Informática,Ensino Secundário,140.0,Português,125.7,0,0,1,Masculino,0,0,0,5,5,0,0.0,0,0,5,5,0,0.0,0,9.4,-0.8,-3.12,0,0.0,0.0,0.0,0.0,0.9998766907870649
+Solteiro,Jornalismo e Comunicação,Ensino Secundário,127.0,Português,123.2,0,0,1,Feminino,0,0,0,6,12,1,11.0,0,0,6,12,0,0.0,0,9.4,-0.8,-3.12,0,0.16666666666666666,0.0,-11.0,-0.16666666666666666,0.9998486925710757
+Solteiro,Enfermagem Veterinária,Ensino Secundário,140.0,Português,129.3,0,1,1,Feminino,0,0,0,6,17,0,0.0,0,0,6,6,0,0.0,0,8.9,1.4,3.51,0,0.0,0.0,0.0,0.0,0.9998174087718495
+Solteiro,Engenharia Informática,Ensino Secundário,127.0,Português,115.8,0,0,1,Masculino,0,0,0,5,10,4,11.5,0,0,5,11,0,0.0,0,13.9,-0.3,0.79,0,0.8,0.0,-11.5,-0.8,0.9997336276371361
+Solteiro,Design de Comunicação,Ensino Secundário,125.0,Português,122.6,0,0,1,Masculino,0,0,0,6,6,1,11.0,0,0,6,6,0,0.0,0,9.4,-0.8,-3.12,0,0.16666666666666666,0.0,-11.0,-0.16666666666666666,0.9997291699774561
+Solteiro,Gestão,Ensino Secundário,139.0,Português,143.6,0,1,1,Masculino,0,0,0,5,9,0,0.0,0,0,5,5,0,0.0,0,7.6,2.6,0.32,0,0.0,0.0,0.0,0.0,0.9996940148451836
+Solteiro,Engenharia Informática,Ensino Secundário,139.0,Português,110.3,0,1,1,Masculino,0,0,0,5,12,1,10.0,0,0,5,11,1,11.0,0,8.9,1.4,3.51,0,0.2,0.2,1.0,0.0,0.9996936284297598
+Solteiro,Engenharia Informática,Ensino Básico (3º Ciclo),133.1,Português,100.0,0,0,1,Masculino,0,0,0,5,13,1,11.0,0,0,5,11,1,10.0,0,13.9,-0.3,0.79,0,0.2,0.2,-1.0,0.0,0.9996534688586607
+Solteiro,Agronomia,Curso de Especialização Tecnológica,140.0,Português,140.0,0,1,1,Masculino,0,0,0,6,6,0,0.0,0,0,6,7,0,0.0,0,8.9,1.4,3.51,0,0.0,0.0,0.0,0.0,0.999629704049313
+Solteiro,Design de Comunicação,Ensino Secundário,116.0,Português,120.9,0,0,1,Masculino,0,0,0,6,6,0,0.0,0,0,6,6,0,0.0,0,12.7,3.7,-1.7,0,0.0,0.0,0.0,0.0,0.9996115512454331
+Casado,Gestão (presencial noturno),Ensino Secundário,140.0,Português,130.0,0,0,1,Feminino,0,0,0,5,5,0,0.0,0,0,5,5,0,0.0,0,9.4,-0.8,-3.12,0,0.0,0.0,0.0,0.0,0.9995955626261648
+Solteiro,Agronomia,Ensino Secundário,133.1,Português,130.0,0,1,1,Feminino,1,0,0,6,6,0,0.0,0,0,6,6,0,0.0,0,11.1,0.6,2.02,0,0.0,0.0,0.0,0.0,0.9995503532660414
+Solteiro,Enfermagem,Ensino Secundário,103.0,Português,108.3,0,0,1,Feminino,1,0,0,7,14,0,0.0,0,0,7,15,0,0.0,0,11.1,0.6,2.02,0,0.0,0.0,0.0,0.0,0.9995404778128857
