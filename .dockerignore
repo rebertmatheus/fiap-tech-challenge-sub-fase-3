@@ -1,0 +1,12 @@
+.venv/
+notebooks/
+mlruns/
+mlflow.db
+*.db
+__pycache__/
+*.pyc
+.git/
+.pytest_cache/
+docs/
+*.md
+data/top_risk_students.csv

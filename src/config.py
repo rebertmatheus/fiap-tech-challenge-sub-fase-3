@@ -1,3 +1,8 @@
+"""Constantes compartilhadas pelo pipeline de ML: paths, colunas, hiperparâmetros
+de reprodutibilidade e nomes usados no MLflow. Fonte única de verdade consumida
+por `src/data.py`, `src/features.py`, `src/train.py`, `src/evaluate.py`,
+`main.py` (treino) e `backend/main.py` (serving)."""
+
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
