@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Evasão de Estudantes - API",
+    "description": "Backend FastAPI de previsão de evasão. Todos os endpoints (exceto /health) exigem o header X-API-Key, com o valor definido em API_KEY no arquivo .env do projeto. Importe também o postman_environment.json e preencha a variável api_key antes de rodar as requisições.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8000", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Health check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Endpoint público, sem autenticação. Usado pelo orquestrador (Docker/EC2) para saber se o container está de pé."
+      },
+      "response": []
+    },
+    {
+      "name": "Get defaults",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-API-Key", "value": "{{api_key}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{base_url}}/defaults",
+          "host": ["{{base_url}}"],
+          "path": ["defaults"]
+        },
+        "description": "Valores default (mediana/moda do treino) para os campos que o formulário do frontend expõe, mais a lista de cursos."
+      },
+      "response": []
+    },
+    {
+      "name": "Predict - perfil mediano",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-API-Key", "value": "{{api_key}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"curso\": \"Enfermagem\",\n  \"sem1_inscrito\": 6,\n  \"sem1_aprovado\": 5,\n  \"sem1_grau_0_20\": 12.34,\n  \"sem2_inscrito\": 6,\n  \"sem2_aprovado\": 5,\n  \"sem2_grau_0_20\": 12.33,\n  \"mensalidades_em_dia\": true,\n  \"bolsista\": false\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": ["{{base_url}}"],
+          "path": ["predict"]
+        },
+        "description": "Perfil próximo da mediana da base — espera-se previsão \"Graduado\" com baixa probabilidade de evasão (~29%)."
+      },
+      "response": []
+    },
+    {
+      "name": "Predict - alto risco",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-API-Key", "value": "{{api_key}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"curso\": \"Engenharia Informática\",\n  \"sem1_inscrito\": 6,\n  \"sem1_aprovado\": 1,\n  \"sem1_grau_0_20\": 4.26,\n  \"sem2_inscrito\": 8,\n  \"sem2_aprovado\": 8,\n  \"sem2_grau_0_20\": 14.04,\n  \"mensalidades_em_dia\": true,\n  \"bolsista\": false\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": ["{{base_url}}"],
+          "path": ["predict"]
+        },
+        "description": "1º semestre ruim (1/6 aprovadas) em curso com alta taxa histórica de evasão (Engenharia Informática, ~87%) — espera-se previsão \"Desistente\" com ~66% de probabilidade, mesmo com recuperação forte no 2º semestre."
+      },
+      "response": []
+    },
+    {
+      "name": "Predict - validação (aprovado > inscrito)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "X-API-Key", "value": "{{api_key}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"curso\": \"Enfermagem\",\n  \"sem1_inscrito\": 2,\n  \"sem1_aprovado\": 5,\n  \"sem1_grau_0_20\": 10,\n  \"sem2_inscrito\": 6,\n  \"sem2_aprovado\": 5,\n  \"sem2_grau_0_20\": 10,\n  \"mensalidades_em_dia\": true,\n  \"bolsista\": false\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": ["{{base_url}}"],
+          "path": ["predict"]
+        },
+        "description": "Combinação inválida de propósito (aprovadas > inscritas no 1º semestre) — espera-se HTTP 422 com mensagem de erro."
+      },
+      "response": []
+    }
+  ]
+}
