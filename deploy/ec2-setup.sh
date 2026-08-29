@@ -37,10 +37,8 @@ if [ ! -f /swapfile ]; then
 fi
 
 echo "== Clonando o repositório =="
-# -b develop: é onde o trabalho está de verdade. O branch default do repo
-# (master) ainda não recebeu o merge, então "git clone" sem -b pega uma
-# versão desatualizada, sem docker-compose.yml nem o resto do projeto.
-git clone -b develop https://github.com/rebertmatheus/fiap-tech-challenge-sub-fase-3.git
+# master já recebeu o merge de develop (2026-08-29) — clone normal, sem -b.
+git clone https://github.com/rebertmatheus/fiap-tech-challenge-sub-fase-3.git
 cd fiap-tech-challenge-sub-fase-3
 
 echo "== Gerando .env com uma API_KEY aleatória =="
