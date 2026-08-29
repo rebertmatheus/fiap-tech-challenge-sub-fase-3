@@ -1,0 +1,12 @@
+# Usado só no deploy da EC2:
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+# Adiciona a porta 80 pro Streamlit (link final sem ":8501"). Dependendo da
+# implementação de compose, a 8501 do arquivo base pode continuar publicada
+# também (merge de listas) — sem problema: o Security Group da EC2 só libera
+# 80/443/22, então 8501 fica bloqueada de fora mesmo assim. O backend não é
+# publicado aqui (herda o "expose" do arquivo base); a porta 8000 também não
+# é liberada no Security Group.
+services:
+  frontend:
+    ports:
+      - "80:8501"

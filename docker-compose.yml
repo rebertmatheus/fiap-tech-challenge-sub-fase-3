@@ -5,8 +5,8 @@ services:
       dockerfile: backend/Dockerfile
     environment:
       API_KEY: "${API_KEY:?defina API_KEY no arquivo .env (veja .env.example)}"
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     restart: unless-stopped
 
   frontend:
