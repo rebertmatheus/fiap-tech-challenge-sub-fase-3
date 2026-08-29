@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      API_KEY: "${API_KEY:?defina API_KEY no arquivo .env (veja .env.example)}"
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    environment:
+      BACKEND_URL: "http://backend:8000"
+      API_KEY: "${API_KEY:?defina API_KEY no arquivo .env (veja .env.example)}"
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    restart: unless-stopped

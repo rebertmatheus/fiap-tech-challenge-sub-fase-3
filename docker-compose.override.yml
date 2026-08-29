@@ -1,0 +1,9 @@
+# Carregado automaticamente por "docker compose up"/"podman-compose up" (sem -f)
+# só em ambiente local — publica a porta do backend no host pra dar pra testar
+# via Postman/`/docs`. Não é carregado no deploy da EC2 (que usa
+# `-f docker-compose.yml -f docker-compose.prod.yml`, sem este arquivo), então
+# lá o backend continua sem porta publicada no host.
+services:
+  backend:
+    ports:
+      - "8000:8000"

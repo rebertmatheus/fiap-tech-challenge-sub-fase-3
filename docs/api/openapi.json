@@ -1,0 +1,237 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Previs\u00e3o de evas\u00e3o de estudantes - API",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/health": {
+            "get": {
+                "summary": "Health",
+                "description": "Healthcheck p\u00fablico (sem autentica\u00e7\u00e3o) para orquestra\u00e7\u00e3o (Docker/EC2).",
+                "operationId": "health_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/defaults": {
+            "get": {
+                "summary": "Get Defaults",
+                "description": "Valores iniciais para os campos que o formul\u00e1rio do frontend exp\u00f5e.\n\nCalculados uma vez, no import do m\u00f3dulo, a partir da mediana (num\u00e9ricos)\ne moda (categ\u00f3ricos) de `df_outcomes` \u2014 com `fix_grade_scale` aplicado\nantes, sen\u00e3o o bug de escala das notas contaminaria a mediana.\n\nReturns:\n    Dict com `curso_options`/`curso_default` e o valor default de cada\n    um dos 8 campos edit\u00e1veis (ver `StudentInput`).",
+                "operationId": "get_defaults_defaults_get",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "X-Api-Key"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/predict": {
+            "post": {
+                "summary": "Predict",
+                "description": "Preenche os campos n\u00e3o edit\u00e1veis com mediana/moda, roda o pipeline\ntreinado e devolve a previs\u00e3o de evas\u00e3o.\n\nArgs:\n    student: Os 8 campos edit\u00e1veis do formul\u00e1rio (ver `StudentInput`).\n        Notas em escala 0-20 (convers\u00e3o 0-10\u21940-20 \u00e9 responsabilidade do\n        frontend, \u00e9 s\u00f3 apresenta\u00e7\u00e3o).\n\nReturns:\n    Dict com `prediction` (\"Desistente\"/\"Graduado\") e `proba_dropout`\n    (probabilidade da classe Desistente, 0-1).\n\nRaises:\n    HTTPException: 422 se `aprovado` > `inscrito` em algum semestre\n    (o frontend j\u00e1 bloqueia isso na UI; aqui \u00e9 a segunda camada de defesa,\n    j\u00e1 que a API pode ser chamada por qualquer cliente autenticado).",
+                "operationId": "predict_predict_post",
+                "parameters": [
+                    {
+                        "name": "x-api-key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "X-Api-Key"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StudentInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "StudentInput": {
+                "properties": {
+                    "curso": {
+                        "type": "string",
+                        "title": "Curso"
+                    },
+                    "sem1_inscrito": {
+                        "type": "integer",
+                        "title": "Sem1 Inscrito"
+                    },
+                    "sem1_aprovado": {
+                        "type": "integer",
+                        "title": "Sem1 Aprovado"
+                    },
+                    "sem1_grau_0_20": {
+                        "type": "number",
+                        "title": "Sem1 Grau 0 20"
+                    },
+                    "sem2_inscrito": {
+                        "type": "integer",
+                        "title": "Sem2 Inscrito"
+                    },
+                    "sem2_aprovado": {
+                        "type": "integer",
+                        "title": "Sem2 Aprovado"
+                    },
+                    "sem2_grau_0_20": {
+                        "type": "number",
+                        "title": "Sem2 Grau 0 20"
+                    },
+                    "mensalidades_em_dia": {
+                        "type": "boolean",
+                        "title": "Mensalidades Em Dia"
+                    },
+                    "bolsista": {
+                        "type": "boolean",
+                        "title": "Bolsista"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "curso",
+                    "sem1_inscrito",
+                    "sem1_aprovado",
+                    "sem1_grau_0_20",
+                    "sem2_inscrito",
+                    "sem2_aprovado",
+                    "sem2_grau_0_20",
+                    "mensalidades_em_dia",
+                    "bolsista"
+                ],
+                "title": "StudentInput",
+                "description": "Payload de `POST /predict` \u2014 s\u00f3 os campos que o formul\u00e1rio exp\u00f5e.\nOs demais ~20 campos do modelo s\u00e3o preenchidos com mediana/moda do\ntreino, aqui dentro do backend (o frontend nunca v\u00ea essas colunas)."
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    },
+                    "input": {
+                        "title": "Input"
+                    },
+                    "ctx": {
+                        "type": "object",
+                        "title": "Context"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        }
+    }
+}

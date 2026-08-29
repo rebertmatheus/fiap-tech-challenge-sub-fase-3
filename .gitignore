@@ -122,3 +122,24 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.DS_Store
+.joblib
+~$*
+
+# MLflow local tracking (SQLite backend store + file-based artifact store)
+mlruns/
+mlflow.db
+mlflow.db-journal
+
+# Claude Code
+/docs/claude
+uv.lock
+
+CLAUDE.md
+
+.agents/skills/developing-with-streamlit
+
+.claude/skills/developing-with-streamlit
+
+*.pem
